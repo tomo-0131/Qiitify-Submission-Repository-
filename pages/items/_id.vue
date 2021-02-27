@@ -6,12 +6,14 @@
         <h4 class="item__lgtm">LGTM数：{{items.likes_count}}</h4><br>
         <h4 class="item__user_id">投稿者ユーザID：{{items.user.id}}</h4><br>
         <h4 class="item__created_at">投稿日時：{{items.created_at}}</h4>
-      </v-card>
+      </v-card><br>
+      <v-card elevation="1" data-aos='fade-up'>
         <h3 class="item_contents" data-aos='fade-up'>記事内容</h3>
           <div class="item_contents__body" data-aos='fade-up'>{{items.body}}</div>
         <p class="return_top">
           <nuxt-link to="/"><small>トップへ戻る</small></nuxt-link>
         </p>
+      </v-card>
     </v-app>
   </v-container>
 </template>
@@ -64,6 +66,7 @@ export default {
 }
 
 .return_top {
+  text-align: center;
   margin-top: 10px;
 }
 
