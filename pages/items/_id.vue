@@ -1,14 +1,14 @@
 <template>
   <v-container>
     <v-app>
-      <v-card elevation="1" width="880px" class="v-card-item">
+      <v-card data-aos='fade-up' elevation="1" width="880px" class="v-card-item">
         <h4 class="item">タイトル：{{items.title}}</h4><br>
         <h4 class="item__lgtm">LGTM数：{{items.likes_count}}</h4><br>
         <h4 class="item__user_id">投稿者ユーザID：{{items.user.id}}</h4><br>
         <h4 class="item__created_at">投稿日時：{{items.created_at}}</h4>
       </v-card>
-        <h3 class="item_contents">記事内容</h3>
-          <div class="item_contents__body">{{items.body}}</div>
+        <h3 class="item_contents" data-aos='fade-up'>記事内容</h3>
+          <div class="item_contents__body" data-aos='fade-up'>{{items.body}}</div>
         <p class="return_top">
           <nuxt-link to="/"><small>トップへ戻る</small></nuxt-link>
         </p>
@@ -29,6 +29,7 @@ export default {
 
 <style lang="scss">
 .v-card-item {
+  text-align: center;
   margin: 0 auto;
   display: inline;
 }
