@@ -8,7 +8,7 @@
         <v-card elevation="1" width="1200px">
           <br>
           <ul>
-            <li v-for="item in items" :key="item.id">
+            <li v-for="item in items" :key="item.id" data-aos='fade-up' dulation='1500'>
               <nuxt-link :to="`items/${item.id}`">
                 <h4>{{ item.title }}</h4>
               </nuxt-link>
