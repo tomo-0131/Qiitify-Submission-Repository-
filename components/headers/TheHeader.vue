@@ -41,7 +41,7 @@
         </v-toolbar-items>
       </v-tab>
       <v-tab>
-        <nuxt-link to="/about">ABOUT</nuxt-link>
+        <nuxt-link to="/post">POST</nuxt-link>
       </v-tab>
       <v-tab>
         <nuxt-link to="/techstack">TECH STACK</nuxt-link>
