@@ -1,17 +1,17 @@
 <template>
   <v-container>
     <v-app>
-      <v-card elevation="1" width="1200px" class="text-center">
-        <h3 class="item_title">タイトル：{{items.title}}</h3><br>
-        <h4 class="text-center">LGTM数：{{items.likes_count}}</h4><br>
-        <h4 class="text-center">投稿者ユーザID：{{items.user.id}}</h4><br>
-        <h4 class="text-center">投稿日時：{{items.created_at}}</h4>
+      <v-card elevation="1" width="880px" class="v-card-item">
+        <h4 class="item">タイトル：{{items.title}}</h4><br>
+        <h4 class="item__lgtm">LGTM数：{{items.likes_count}}</h4><br>
+        <h4 class="item__user_id">投稿者ユーザID：{{items.user.id}}</h4><br>
+        <h4 class="item__created_at">投稿日時：{{items.created_at}}</h4>
+      </v-card>
         <h3 class="item_contents">記事内容</h3>
           <div class="item_contents__body">{{items.body}}</div>
         <p class="return_top">
           <nuxt-link to="/"><small>トップへ戻る</small></nuxt-link>
         </p>
-      </v-card>
     </v-app>
   </v-container>
 </template>
@@ -28,6 +28,20 @@ export default {
 </script>
 
 <style lang="scss">
+.v-card-item {
+  margin: 0 auto;
+  display: inline;
+}
+
+.item {
+  margin-top: 20px;
+
+  &__created_at {
+    margin-bottom: 10px;
+  }
+
+}
+
 .item_title {
   margin-top: 20px;
   margin-left: 30px;
@@ -36,7 +50,7 @@ export default {
 // 記事内容-文字
 .item_contents {
   text-align: left;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 10px;
   margin-left: 20px;
 
