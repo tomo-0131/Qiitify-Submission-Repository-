@@ -23,17 +23,17 @@
               </v-list-item>
               <v-list-item>
                 <v-list-item-content>
-                  <nuxt-link to="/task2">TASK2</nuxt-link>
+                  <nuxt-link to="/task2">課題2</nuxt-link>
                 </v-list-item-content>
               </v-list-item>
               <v-list-item>
                 <v-list-item-content>
-                  <nuxt-link to="/task3">TASK3</nuxt-link>
+                  <nuxt-link to="/task3">課題3</nuxt-link>
                 </v-list-item-content>
               </v-list-item>
               <v-list-item>
                 <v-list-item-content>
-                  <nuxt-link to="/task4">TASK4</nuxt-link>
+                  <nuxt-link to="/task4">課題4</nuxt-link>
                 </v-list-item-content>
               </v-list-item>
             </v-list>
