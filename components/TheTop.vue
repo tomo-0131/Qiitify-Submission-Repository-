@@ -1,0 +1,94 @@
+<template>
+  <div id="app">
+    <v-app>
+      <v-container>
+      <p class="kadai1">課題１<br>
+        <input v-model="userId" type="text" placeholder="ユーザIDを入力"></p>
+      <p class="text-center">{{ message }}</p>
+        <v-card elevation="1" width="1200px">
+          <br>
+          <ul>
+            <li v-for="item in items" :key="item.id">
+              <nuxt-link :to="`items/${item.id}`">
+                <h4>{{ item.title }}</h4>
+              </nuxt-link>
+              <nuxt-link :to="`users/${item.user.id}`">
+                ユーザID：{{ item.user.id }}
+              </nuxt-link>
+            </li>
+          </ul>
+          <br>
+        </v-card>
+      </v-container>
+    </v-app>
+  </div>
+</template>
+
+<script>
+/* eslint-disable */
+import lodash from 'lodash'
+import axios from 'axios'
+
+export default {
+  data () {
+    return {
+      items: null,
+      userId: '',
+      message: ''
+    }
+  },
+  // 監視プロパティ インプット内の文字変化を監視する-文字入力がされている間発火する
+  watch: {
+    // 第一引数(変化後), 第二引数(変化前)
+    userId (newKeyword, oldKeyword) {
+      this.message = '検索中...'
+      // lodashを利用。文字入力がされている間発火し続けるとAPIリクエストが多大になる為、lodashにより入力時間を遅延させる
+      this.debouncedGetAnswer()
+    }
+  },
+
+  created () {
+    this.debouncedGetAnswer = _.debounce(this.getAnswer, 1200)
+  },
+
+  methods: {
+    getAnswer () {
+      if (this.userId === '') {
+        this.items = null
+        this.message = ''
+        return
+      }
+      this.message = 'Loading...'
+
+      const vm = this
+      const params = { page: 1, per_page: 20, query: this.userId}
+      axios.get('https://qiita.com/api/v2/items', { params })
+        .then(function (response) {
+          vm.items = response.data
+        })
+        .catch(function (error) {
+          vm.message = 'Error!' + error
+        })
+        .finally(function () {
+          vm.message = ''
+        })
+
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+  input {
+    border: 1px solid;
+    color: darkgray;
+    padding-left: 3px;
+    width: 240px;
+    margin-top: 10px;
+  }
+
+  .kadai1 {
+    text-align: center;
+  }
+
+</style>
