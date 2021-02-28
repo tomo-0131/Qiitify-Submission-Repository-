@@ -9,11 +9,18 @@
           v-bind:src="require('@/assets/images/top.png')"
           height="250px"
         ><br>
-        <v-card width="300px" class="top-img-card">
-          <br>
-          <p class="task1">画面１<br>
-          <input v-model="userId" color="white" type="text" placeholder="ユーザIDを入力してください"></p>
-          <br>
+        <v-card width="450px" class="top-img-card" max-width="670px">
+          <p class="task1">画面１</p>
+          <v-card-text>
+            <v-form>
+              <v-text-field
+                v-model="userId"
+                label="ユーザIDを入力してください"
+                required
+                hide-details="auto"
+              ></v-text-field>
+            </v-form>
+          </v-card-text>
         </v-card>
       </v-img>
 
@@ -108,20 +115,14 @@ export default {
     display: none;
   }
 
-  input {
-    border: 1px solid;
-    color: darkgray;
-    padding-left: 3px;
-    width: 240px;
-    margin-top: 10px;
-  }
-
   .img1 {
     margin-bottom: 20px;
   }
 
   .task1 {
     text-align: center;
+    margin-top: 10px;
+    padding-bottom: -50px;
   }
 
   .task2_button {
@@ -130,7 +131,8 @@ export default {
 
   .top-img-card {
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 28px;
+    padding: 10px;
   }
 
 
