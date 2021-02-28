@@ -2,13 +2,23 @@
   <div id="app">
     <v-app>
       <v-container>
-      <p class="kadai1">課題１<br>
-        <input v-model="userId" type="text" placeholder="ユーザIDを入力"></p>
-      <p class="text-center">{{ message }}</p>
-        <v-card elevation="1" width="1200px">
-          <br>
+      <p class="task1">画面１<br>
+        <input v-model="userId" type="text" placeholder="ユーザIDを入力してください"></p>
+        <nuxt-link to="/task2">
+          <div class="text-center">
+            <v-btn
+              color="green"
+              elevation="2"
+              dark
+              tile
+              > 画面２へ
+            </v-btn>
+          </div>
+        </nuxt-link>
+      <p class="text-center" v-cloak>{{ message }}</p>
+        <v-card elevation="1" width="1200px"><br>
           <ul>
-            <li v-for="item in items" :key="item.id" data-aos='fade-up' dulation='1500'>
+            <li v-for="item in items" :key="item.id" data-aos='fade-up' dulation='1500' v-cloak>
               <nuxt-link :to="`items/${item.id}`">
                 <h4>{{ item.title }}</h4>
               </nuxt-link>
@@ -79,6 +89,10 @@ export default {
 </script>
 
 <style lang="scss">
+  [v-cloak] {
+    display: none;
+  }
+
   input {
     border: 1px solid;
     color: darkgray;
@@ -87,8 +101,13 @@ export default {
     margin-top: 10px;
   }
 
-  .kadai1 {
+  .task1 {
     text-align: center;
   }
+
+  .task2_button {
+    margin-top: 10px;
+  }
+
 
 </style>
