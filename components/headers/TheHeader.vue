@@ -5,7 +5,7 @@
       <nuxt-link to="/"><h2>Q i i t i f y</h2></nuxt-link>
     </v-toolbar-title>
 
-    <v-tabs v-model="tab" centered color="green" hide-slider="true">
+    <v-tabs centered v-model="tab" color="green" hide-slider="true">
       <v-tab>
         <nuxt-link to="/">HOME</nuxt-link>
       </v-tab>
