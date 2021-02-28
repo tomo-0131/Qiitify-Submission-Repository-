@@ -13,7 +13,7 @@
         <v-toolbar-items>
           <v-menu offset-y>
             <template #activator="{on}">
-              <v-btn text v-on="on">TASK</v-btn>
+              <v-btn text v-on="on">TASK▽</v-btn>
             </template>
             <v-list>
               <v-list-item>
