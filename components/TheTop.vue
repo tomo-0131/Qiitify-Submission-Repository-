@@ -16,6 +16,7 @@
               <v-text-field
                 v-model="userId"
                 label="ユーザIDを入力してください"
+                color="green"
                 required
                 hide-details="auto"
               ></v-text-field>
@@ -25,13 +26,12 @@
       </v-img>
 
         <nuxt-link to="/task2">
-          <div class="text-center">
+          <div class="text-center"  data-aos="zoom-in-up">
             <v-btn
               color="green"
-              elevation="2"
+              elevation="4"
               dark
-              tile
-              > 画面２へ
+              > 私の投稿
             </v-btn>
           </div>
         </nuxt-link>
