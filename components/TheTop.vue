@@ -9,13 +9,14 @@
           v-bind:src="require('@/assets/images/top.png')"
           height="250px"
         ><br>
-        <v-card width="450px" class="top-img-card" max-width="670px">
+        <v-card width="450px" class="top-img-card" max-width="670px" data-aos="zoom-in-up">
           <p class="task1">画面１</p>
           <v-card-text>
             <v-form>
               <v-text-field
                 v-model="userId"
                 label="ユーザIDを入力してください"
+                loading
                 color="green"
                 required
                 hide-details="auto"
