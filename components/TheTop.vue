@@ -2,8 +2,21 @@
   <div id="app">
     <v-app>
       <v-container>
-      <p class="task1">画面１<br>
-        <input v-model="userId" type="text" placeholder="ユーザIDを入力してください"></p>
+       <v-img
+          data-aos="zoom-in-up"
+          data-aos-anchor-placement="top-bottom"
+          class="img1"
+          v-bind:src="require('@/assets/images/top.png')"
+          height="250px"
+        ><br>
+        <v-card width="300px" class="top-img-card">
+          <br>
+          <p class="task1">画面１<br>
+          <input v-model="userId" color="white" type="text" placeholder="ユーザIDを入力してください"></p>
+          <br>
+        </v-card>
+      </v-img>
+
         <nuxt-link to="/task2">
           <div class="text-center">
             <v-btn
@@ -15,6 +28,7 @@
             </v-btn>
           </div>
         </nuxt-link>
+      <br>
       <p class="text-center" v-cloak>{{ message }}</p>
         <v-card elevation="1" width="1200px"><br>
           <ul>
@@ -25,6 +39,7 @@
               <nuxt-link :to="`users/${item.user.id}`">
                 ユーザID：{{ item.user.id }}
               </nuxt-link>
+            <v-divider /><br>
             </li>
           </ul>
           <br>
@@ -101,12 +116,21 @@ export default {
     margin-top: 10px;
   }
 
+  .img1 {
+    margin-bottom: 20px;
+  }
+
   .task1 {
     text-align: center;
   }
 
   .task2_button {
     margin-top: 10px;
+  }
+
+  .top-img-card {
+    margin: 0 auto;
+    margin-top: 40px;
   }
 
 
