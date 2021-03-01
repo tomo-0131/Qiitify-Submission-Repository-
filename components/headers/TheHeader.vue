@@ -43,12 +43,6 @@
       <v-tab>
         <nuxt-link to="/post">POST</nuxt-link>
       </v-tab>
-      <v-tab>
-        <nuxt-link to="/techstack">TECH STACK</nuxt-link>
-      </v-tab>
-      <v-tab>
-        <nuxt-link to="/contact">CONTACT</nuxt-link>
-      </v-tab>
     </v-tabs>
   </v-tool-bar>
 </template>
