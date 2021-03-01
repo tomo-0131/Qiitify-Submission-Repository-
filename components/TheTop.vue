@@ -39,7 +39,7 @@
       <br>
       <p class="text-center" v-cloak>{{ message }}</p>
         <v-card elevation="1" width="1200px"><br>
-          <ul>
+          <ul  class="top-list">
             <li v-for="item in items" :key="item.id" data-aos='fade-up' dulation='1500' v-cloak>
               <nuxt-link :to="`items/${item.id}`">
                 <h4>{{ item.title }}</h4>
@@ -134,6 +134,10 @@ export default {
     margin: 0 auto;
     margin-top: 28px;
     padding: 10px;
+  }
+
+  .top-list {
+    list-style: none;
   }
 
 
