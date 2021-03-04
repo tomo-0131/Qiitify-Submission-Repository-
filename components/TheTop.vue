@@ -10,7 +10,7 @@
           height="250px"
         ><br>
         <v-card class="top-img-card" max-width="670px" data-aos="zoom-in-up">
-          <p class="task1">画面１</p>
+          <p class="task1">ユーザIDを入力してQiitaを検索！</p>
           <v-card-text>
             <v-form>
               <v-text-field
