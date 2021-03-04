@@ -18,22 +18,12 @@
             <v-list>
               <v-list-item>
                 <v-list-item-content>
-                  <nuxt-link to="/">課題1</nuxt-link>
+                  <nuxt-link to="/">ホーム</nuxt-link>
                 </v-list-item-content>
               </v-list-item>
               <v-list-item>
                 <v-list-item-content>
-                  <nuxt-link to="/task2">課題2</nuxt-link>
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-content>
-                  <nuxt-link to="/task3">課題3</nuxt-link>
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-content>
-                  <nuxt-link to="/task4">課題4</nuxt-link>
+                  <nuxt-link to="/task2">私の投稿</nuxt-link>
                 </v-list-item-content>
               </v-list-item>
             </v-list>
