@@ -13,8 +13,12 @@
               <h5>投稿日時：{{ item.created_at }}</h5><br>
               <h5>本文：{{item.body.slice(0, 150)}}……</h5>
               <div class="buttons">
-                <v-btn dark depressed color="primary">編集</v-btn>
-                <v-btn v-on:click="deleteItems" dark depressed color="error">削除</v-btn>
+                  <nuxt-link :to="`drafts/${item.id}`">
+                    <v-btn v-on:click="editItems(item.id)" dark depressed color="primary">
+                      編集
+                    </v-btn>
+                  </nuxt-link>
+                <v-btn v-on:click="deleteItems(item.id)" dark depressed color="error">削除</v-btn>
               </div>
             <v-divider /><br>
             </li><br>
@@ -38,7 +42,7 @@ export default {
   },
   methods: {
     getAPIs () {
-      axios.get('https://qiita.com/api/v2/users/tomoyuki_kt/items', { headers: { Authorization: 'Bearer 5e64526bf290713125443ba2a6d69bbb80073fa7' } })
+      axios.get('https://qiita.com/api/v2/users/tomoyuki_kt/items', { headers: { Authorization: `Bearer ${process.env.QIITA_TOKEN}` } })
         .then((response) => {
           this.itemAll = response.data
         })
@@ -46,20 +50,22 @@ export default {
           this.message = 'エラー' + error
         })
     },
-    deleteItems () {
-      axios.delete('https://qiita.com/api/v2/items/db114ca264cb110b2cb0', { headers: { Authorization: 'Bearer 5e64526bf290713125443ba2a6d69bbb80073fa7' } })
-        .then((response) => {
-          const result = confirm('削除しますか')
-          if (result) {
+    deleteItems (itemId) {
+      const result = confirm('削除しますか？')
+      if (result) {
+        const url = `https://qiita.com/api/v2/items/${itemId}`
+        axios.delete(url, { headers: { Authorization: `Bearer ${process.env.QIITA_TOKEN}` } })
+          .then((response) => {
             alert('記事を削除しました！')
             location.reload()
-          } else {
-            alert('削除を中断しました')
-          }
-        })
-        .catch((error) => {
-          this.message = 'エラー！' + error
-        })
+          })
+          .catch((error) => {
+            alert('削除に失敗しました！')
+            this.message = 'エラー！' + error
+          })
+      } else {
+        alert('削除を中断しました！')
+      }
     }
   },
   created () {
