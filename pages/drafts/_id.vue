@@ -13,7 +13,6 @@
       <v-layout wrap>
         <v-flex xs12>
           <v-combobox
-            multiple
             v-model="item.tags.name"
             label="タグ"
             append-icon
@@ -87,7 +86,7 @@ export default {
         title: '',
         tags: {
           name: '',
-          versions: ''
+          versions: '1.0.0'
         }
       },
       mavonEditor: {
@@ -166,6 +165,7 @@ export default {
         .then((response) => {
           alert('記事を編集しました！')
           location.reload()
+          location.href = '/task2'
         })
         .catch((error) => {
           this.message = 'エラー' + error
