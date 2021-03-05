@@ -3,29 +3,37 @@
     <v-app>
       <v-form>
         <v-text-field
-         v-model="setTitle"
+         v-model="item.title"
           label="タイトル"
           color="green"
           required
         ></v-text-field>
       </v-form>
-      <v-text-field
-        v-model="setTags"
+
+      <v-textarea
+        v-model="item.tags.name"
         label="タグ"
         color="green"
         required
+      ></v-textarea><br>
+      <v-text-field
+        v-model="item.tags.versions"
+        label="バージョン"
+        color="green"
+        required
+        type="number"
+        placeholder="例：1.0.0"
       ></v-text-field><br>
 
       <mavon-editor
         language="ja"
-        v-model="setBody"
+        v-model="item.body"
         :counter="65535"
         :externalLink="mavonEditor.externalLink"
         :toolbars="mavonEditor.toolbars"
       ></mavon-editor>
       <mavon-editor
         language="ja"
-        v-model="setBody"
         :externalLink="mavonEditor.externalLink"
         :subfield="false"
         :editable="false"
@@ -55,13 +63,15 @@ import 'mavon-editor/dist/katex/katex.min.js'
 Vue.use(mavonEditor)
 
 export default {
-  name: 'postForm',
   data () {
     return {
       item: {
         body: '',
         title: '',
-        tag: []
+        tags: {
+          name: '',
+          versions: ''
+        }
       },
       mavonEditor: {
         externalLink: {
@@ -112,8 +122,22 @@ export default {
   },
   methods: {
     postItems () {
-      // const url = 'https://qiita.com/api/v2/items/'
-      axios.post({ headers: { Authorization: 'Bearer 5e64526bf290713125443ba2a6d69bbb80073fa7' } })
+      const url = 'https://qiita.com/api/v2/items/'
+      const params = {
+        body: this.item.body,
+        coediting: false,
+        group_url_name: null,
+        private: false,
+        tags: [
+          {
+            name: this.item.tags.name,
+            versions: [this.item.tags.versions]
+          }
+        ],
+        title: this.item.title,
+        tweet: false
+      }
+      axios.post(url, params, { headers: { Authorization: 'Bearer 5e64526bf290713125443ba2a6d69bbb80073fa7' } })
         .then((response) => {
           alert('記事を投稿しました！')
           location.reload()
