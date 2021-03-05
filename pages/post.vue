@@ -151,7 +151,7 @@ export default {
         private: false,
         tags: [
           {
-            name: this.select,
+            name: this.item.tags.name,
             versions: [this.item.tags.versions]
           }
         ],
