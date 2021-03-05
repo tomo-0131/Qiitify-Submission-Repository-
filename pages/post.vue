@@ -137,7 +137,7 @@ export default {
         title: this.item.title,
         tweet: false
       }
-      axios.post(url, params, { headers: { Authorization: 'Bearer 5e64526bf290713125443ba2a6d69bbb80073fa7' } })
+      axios.post(url, params, { headers: { Authorization: `Bearer ${process.env.QIITA_TOKEN}` } })
         .then((response) => {
           alert('記事を投稿しました！')
           location.reload()
