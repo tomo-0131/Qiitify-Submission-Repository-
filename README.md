@@ -2,7 +2,7 @@
   - URL：
   https://qiitify.netlify.app
   
-  QiitaAPIを利用し、記事を検索することができるWebサービスです。
+  [Qiita API v2](https://qiita.com/api/v2/docs)を利用し、記事を検索することができるWebサービスです。
   主にNuxt.js,Vue.jsを利用し、Netlifyにデプロイしています。
   
   モダンなUIと軽快な動作も特徴です。
@@ -32,7 +32,7 @@
   - 中身を確認できるように、本文初めより150文字を表示させています
 
 ### 投稿・編集ページ
-  - Qiita APIのPOST,PATCHメソッドを利用し、Qiitaをブラウジングせずに記事投稿・編集が可能です  
+  - Qiita APIのPOST,PATCHメソッドを利用し、Qiitaをブラウジングせずに記事投稿・編集が可能です(id:tomoyuki_ktのみ) 
   - mavon-editorライブラリを利用しており、マークダウン形式で記事を書くことができます
   - タイトル・タグ・本文は入力必須です
  
