@@ -10,22 +10,22 @@
         ></v-text-field>
       </v-form>
 
-        <v-layout wrap>
-          <v-flex xs12>
-            <v-combobox
-              multiple
-              v-model="item.tags.name"
-              label="タグ"
-              append-icon
-              chips
-              deletable-chips
-              class="tag-input"
-              :search-input.sync="search"
-              @keyup.tab="updateTags"
-              @paste="updateTags">
-            </v-combobox>
-          </v-flex>
-        </v-layout>
+      <v-layout wrap>
+        <v-flex xs12>
+          <v-combobox
+            multiple
+            v-model="item.tags.name"
+            label="タグ"
+            append-icon
+            chips
+            deletable-chips
+            class="tag-input"
+            :search-input.sync="search"
+            @keyup.tab="updateTags"
+            @paste="updateTags">
+          </v-combobox>
+        </v-flex>
+      </v-layout>
 
       <v-text-field
         v-model="item.tags.versions"
@@ -43,13 +43,15 @@
         :externalLink="mavonEditor.externalLink"
         :toolbars="mavonEditor.toolbars"
       ></mavon-editor>
+
       <mavon-editor
         language="ja"
+        v-model="item.body"
         :externalLink="mavonEditor.externalLink"
         :subfield="false"
         :editable="false"
         :toolbarsFlag="false"
-        :boxShadow="true"
+        :boxShadow="false"
         defaultOpen="preview"
         previewBackground="#fff"
       ></mavon-editor>
@@ -81,12 +83,10 @@ export default {
       item: {
         body: '',
         title: '',
-        tags: [
-          {
-            name: '',
-            versions: ['']
-          }
-        ]
+        tags: {
+          name: '',
+          versions: ['']
+        }
       },
       mavonEditor: {
         externalLink: {
