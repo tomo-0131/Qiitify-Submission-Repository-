@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-app v-cloak>
-      <v-form>
+    <v-app>
+      <v-form v-cloak>
         <v-text-field
          v-model="item.title"
           label="タイトル"
@@ -10,13 +10,22 @@
           v-cloak
         ></v-text-field>
       </v-form>
-      <v-textarea
-        v-model="item.tags.name"
-        label="タグ"
-        color="green"
-        required
-        v-cloak
-      ></v-textarea><br>
+      <v-layout wrap>
+        <v-flex xs12>
+          <v-combobox
+            multiple
+            v-model="item.tags.name"
+            label="タグ"
+            append-icon
+            chips
+            deletable-chips
+            class="tag-input"
+            :search-input.sync="search"
+            @keyup.tab="updateTags"
+            @paste="updateTags">
+          </v-combobox>
+        </v-flex>
+      </v-layout>
       <v-text-field
         v-model="item.tags.versions"
         label="バージョン"
@@ -36,11 +45,12 @@
       ></mavon-editor>
       <mavon-editor
         language="ja"
+        v-model="item.body"
         :externalLink="mavonEditor.externalLink"
         :subfield="false"
         :editable="false"
         :toolbarsFlag="false"
-        :boxShadow="true"
+        :boxShadow="false"
         defaultOpen="preview"
         previewBackground="#fff"
       ></mavon-editor>
@@ -71,7 +81,6 @@ export default {
   },
   data () {
     return {
-      itemAll: '',
       item: {
         id: '',
         body: '',
@@ -129,6 +138,14 @@ export default {
     }
   },
   methods: {
+    updateTags () {
+      this.$nextTick(() => {
+        this.item.tags.name.push(...this.search.split(','))
+        this.$nextTick(() => {
+          this.search = ''
+        })
+      })
+    },
     patchItems () {
       const url = `https://qiita.com/api/v2/items/${this.item.id}`
       const params = {
@@ -157,7 +174,7 @@ export default {
     getAPIs () {
       axios.get('https://qiita.com/api/v2/items/{{item.id}}', { headers: { Authorization: `Bearer ${process.env.QIITA_TOKEN}` } })
         .then((response) => {
-          this.itemAll = response.data
+          this.item = response.data
         })
         .catch((error) => {
           this.message = 'エラー' + error
