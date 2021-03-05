@@ -53,7 +53,11 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    [
+      '@nuxtjs/dotenv',
+      { filename: process.env.NODE_ENV !== 'production' ? "./config/.env.dev" : "./config/.env.prod" }
+    ]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
