@@ -1,5 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
-require('dotenv').config()
+const envPath = `config/.env.${process.env.ENV || 'local'}`
+require('dotenv').config({ path: envPath })
 const { QIITA_TOKEN } = process.env
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
