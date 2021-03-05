@@ -140,7 +140,7 @@ export default {
       axios.post(url, params, { headers: { Authorization: `Bearer ${process.env.QIITA_TOKEN}` } })
         .then((response) => {
           alert('記事を投稿しました！')
-          location.reload()
+          location.href = '/task2'
         })
         .catch((error) => {
           this.message = 'エラー' + error
