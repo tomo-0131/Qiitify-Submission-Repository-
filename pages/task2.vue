@@ -41,6 +41,7 @@ export default {
     }
   },
   methods: {
+    // APIにより記事一覧を取得
     getAPIs () {
       axios.get('https://qiita.com/api/v2/users/tomoyuki_kt/items', { headers: { Authorization: `Bearer ${process.env.QIITA_TOKEN}` } })
         .then((response) => {
