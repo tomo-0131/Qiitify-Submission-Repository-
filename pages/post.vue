@@ -13,8 +13,7 @@
       <v-layout wrap>
         <v-flex xs12>
           <v-combobox
-            multiple
-            v-model="item.tags.name"
+            v-model="select"
             label="タグ"
             append-icon
             chips
@@ -80,6 +79,7 @@ export default {
     return {
       items: [],
       search: '',
+      select: [],
       item: {
         body: '',
         title: '',
@@ -153,7 +153,7 @@ export default {
         private: false,
         tags: [
           {
-            name: this.item.tags.name,
+            name: this.select,
             versions: [this.item.tags.versions]
           }
         ],
