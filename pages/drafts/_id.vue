@@ -172,9 +172,12 @@ export default {
         })
     },
     getAPIs () {
-      axios.get('https://qiita.com/api/v2/items/{{item.id}}', { headers: { Authorization: `Bearer ${process.env.QIITA_TOKEN}` } })
+      axios.get(`https://qiita.com/api/v2/items/${this.$route.params.id}`, { headers: { Authorization: `Bearer ${process.env.QIITA_TOKEN}` } })
         .then((response) => {
+          console.log(response)
           this.item = response.data
+          this.item.tags.name = response.data.tags[0].name
+          this.item.tags.versions = response.data.tags[0].versions
         })
         .catch((error) => {
           this.message = 'エラー' + error
