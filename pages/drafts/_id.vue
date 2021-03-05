@@ -3,29 +3,36 @@
     <v-app>
       <v-form>
         <v-text-field
-         v-model="setTitle"
+         v-model="item.title"
           label="タイトル"
           color="green"
           required
         ></v-text-field>
       </v-form>
-      <v-text-field
-        v-model="setTags"
+
+      <v-textarea
+        v-model="item.tags.name"
         label="タグ"
         color="green"
         required
+      ></v-textarea><br>
+      <v-text-field
+        v-model="item.tags.versions"
+        label="バージョン"
+        color="green"
+        required
+        type="number"
+        placeholder="例：1.0.0"
       ></v-text-field><br>
-
       <mavon-editor
         language="ja"
-        v-model="getAPIs"
+        v-model="item.body"
         :counter="65535"
         :externalLink="mavonEditor.externalLink"
         :toolbars="mavonEditor.toolbars"
       ></mavon-editor>
       <mavon-editor
         language="ja"
-        v-model="setBody"
         :externalLink="mavonEditor.externalLink"
         :subfield="false"
         :editable="false"
@@ -35,7 +42,8 @@
         previewBackground="#fff"
       ></mavon-editor>
 
-      <v-btn v-on:click="postItems" color="primary">投稿する</v-btn>
+      <v-btn v-on:click="patchItems" color="primary">編集を投稿する</v-btn>
+
     </v-app>
   </v-container>
 </template>
@@ -54,14 +62,21 @@ import 'mavon-editor/dist/katex/katex.min.js'
 Vue.use(mavonEditor)
 
 export default {
-  name: 'postForm',
+  async asyncData ({ route, app }) {
+    const item = await app.$axios.$get(`https://qiita.com/api/v2/items/${route.params.id}`)
+    return { item }
+  },
   data () {
     return {
-      itemAll: null,
+      itemAll: '',
       item: {
+        id: '',
         body: '',
         title: '',
-        tag: []
+        tags: {
+          name: '',
+          versions: ''
+        }
       },
       mavonEditor: {
         externalLink: {
@@ -111,20 +126,43 @@ export default {
     }
   },
   methods: {
-    getAPIs (itemId) {
-      const url = `https://qiita.com/api/v2/items/${itemId}`
-      axios.get(url, { headers: { Authorization: 'Bearer 5e64526bf290713125443ba2a6d69bbb80073fa7' } })
+    patchItems () {
+      const url = `https://qiita.com/api/v2/items/${this.item.id}`
+      const params = {
+        body: this.item.body,
+        coediting: false,
+        group_url_name: null,
+        private: false,
+        tags: [
+          {
+            name: this.item.tags.name,
+            versions: [this.item.tags.versions]
+          }
+        ],
+        title: this.item.title,
+        tweet: false
+      }
+      axios.patch(url, params, { headers: { Authorization: `Bearer ${process.env.QIITA_TOKEN}` } })
+        .then((response) => {
+          alert('記事を編集しました！')
+          location.reload()
+        })
+        .catch((error) => {
+          this.message = 'エラー' + error
+        })
+    },
+    getAPIs () {
+      axios.get('https://qiita.com/api/v2/items/{{item.id}}', { headers: { Authorization: `Bearer ${process.env.QIITA_TOKEN}` } })
         .then((response) => {
           this.itemAll = response.data
         })
         .catch((error) => {
           this.message = 'エラー' + error
         })
-    },
-    created () {
-      this.getAPIs()
     }
+  },
+  created () {
+    this.getAPIs()
   }
 }
-
 </script>
