@@ -1,0 +1,13 @@
+<template>
+  <div>
+    <v-text-field
+      id="user-id-field"
+      v-model="userId"
+      label="ユーザIDを入力してください"
+      loading
+      color="green"
+      required
+      hide-details="auto"
+    />
+  </div>
+</template>
