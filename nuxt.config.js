@@ -1,6 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
-const envPath = `config/.env.${process.env.ENV || 'local'}`
-require('dotenv').config({ path: envPath })
+require('dotenv').config()
 const { QIITA_TOKEN } = process.env
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -54,11 +53,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-    [
-      '@nuxtjs/dotenv',
-      { filename: process.env.NODE_ENV !== 'production' ? "./config/.env.dev" : "./config/.env.production" }
-    ]
+    '@nuxtjs/axios'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
