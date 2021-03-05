@@ -9,11 +9,11 @@
       </v-card><br>
       <v-card elevation="1" data-aos='fade-up'>
         <h3 class="item_contents" data-aos='fade-up'>記事内容</h3>
-          <div class="item_contents__body" data-aos='fade-up'>{{items.body}}</div>
+          <div class="item_contents__body" data-aos='fade-up'>{{items.body}}</div><br>
+      </v-card>
         <p class="return_top">
           <nuxt-link to="/"><small>トップへ戻る</small></nuxt-link>
         </p>
-      </v-card>
     </v-app>
   </v-container>
 </template>
