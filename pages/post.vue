@@ -10,12 +10,31 @@
         ></v-text-field>
       </v-form>
 
-      <v-textarea
-        v-model="item.tags.name"
-        label="タグ"
-        color="green"
-        required
-      ></v-textarea><br>
+        <v-layout wrap>
+          <v-flex xs12>
+            <v-combobox
+              multiple
+              v-model="item.tags.name"
+              label="タグ"
+              append-icon
+              chips
+              deletable-chips
+              class="tag-input"
+              :search-input.sync="search"
+              @keyup.tab="updateTags"
+              @paste="updateTags">
+            </v-combobox>
+          </v-flex>
+            <v-chip
+              close
+              v-for="tag in select"
+              :key="tag"
+              color="success"
+              text-color="white">
+             &nbsp; <v-icon left>{{tag}}</v-icon>
+            </v-chip>
+        </v-layout>
+
       <v-text-field
         v-model="item.tags.versions"
         label="バージョン"
@@ -65,13 +84,17 @@ Vue.use(mavonEditor)
 export default {
   data () {
     return {
+      items: [],
+      search: '',
       item: {
         body: '',
         title: '',
-        tags: {
-          name: '',
-          versions: ''
-        }
+        tags: [
+          {
+            name: '',
+            versions: ['']
+          }
+        ]
       },
       mavonEditor: {
         externalLink: {
@@ -121,6 +144,14 @@ export default {
     }
   },
   methods: {
+    updateTags () {
+      this.$nextTick(() => {
+        this.item.tags.name.push(...this.search.split(','))
+        this.$nextTick(() => {
+          this.search = ''
+        })
+      })
+    },
     postItems () {
       const url = 'https://qiita.com/api/v2/items/'
       const params = {
@@ -149,3 +180,35 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.tag-input span.chip {
+  background-color: #1976d2;
+  color: #fff;
+  font-size: 1em;
+}
+
+.tag-input span.v-chip {
+  background-color: #1976d2;
+  color: #fff;
+  font-size:1em;
+  padding-left:7px;
+}
+
+.tag-input span.v-chip::before {
+    content: "label";
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+}
+
+</style>
