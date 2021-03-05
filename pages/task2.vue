@@ -7,17 +7,21 @@
           <ul>
             <li v-for="item in itemAll" :key="item.id" v-cloak>
               記事ID：{{ item.id }}<br>
+              <br>
+              <nuxt-link :to="`items/${item.id}`">
+                <h4>{{ item.title }}</h4>
+              </nuxt-link><br>
               <a :href="item.url" target="_blank">
-              タイトル：{{ item.title }}
+              Qiitaリンク<br>
               </a><br>
               <h5>投稿日時：{{ item.created_at }}</h5><br>
               <h5>本文：{{item.body.slice(0, 150)}}……</h5>
               <div class="buttons">
-                  <nuxt-link :to="`drafts/${item.id}`">
-                    <v-btn v-on:click="editItems(item.id)" dark depressed color="primary">
-                      編集
-                    </v-btn>
-                  </nuxt-link>
+                <nuxt-link :to="`drafts/${item.id}`">
+                  <v-btn v-on:click="editItems(item.id)" dark depressed color="primary">
+                    編集
+                  </v-btn>
+                </nuxt-link>
                 <v-btn v-on:click="deleteItems(item.id)" dark depressed color="error">削除</v-btn>
               </div>
             <v-divider /><br>
