@@ -63,7 +63,6 @@
 
 <script>
 import axios from 'axios'
-// マークダウン形式フォームを導入する
 import mavonEditor from 'mavon-editor'
 import Vue from 'vue'
 import 'mavon-editor/dist/css/index.css'
