@@ -25,14 +25,6 @@
               @paste="updateTags">
             </v-combobox>
           </v-flex>
-            <v-chip
-              close
-              v-for="tag in select"
-              :key="tag"
-              color="success"
-              text-color="white">
-             &nbsp; <v-icon left>{{tag}}</v-icon>
-            </v-chip>
         </v-layout>
 
       <v-text-field
