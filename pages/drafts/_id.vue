@@ -1,12 +1,13 @@
 <template>
   <v-container>
-    <v-app>
+    <v-app v-cloak>
       <v-form>
         <v-text-field
          v-model="item.title"
           label="タイトル"
           color="green"
           required
+          v-cloak
         ></v-text-field>
       </v-form>
 
@@ -15,6 +16,7 @@
         label="タグ"
         color="green"
         required
+        v-cloak
       ></v-textarea><br>
       <v-text-field
         v-model="item.tags.versions"
@@ -23,6 +25,7 @@
         required
         type="number"
         placeholder="例：1.0.0"
+        v-cloak
       ></v-text-field><br>
       <mavon-editor
         language="ja"
@@ -30,6 +33,7 @@
         :counter="65535"
         :externalLink="mavonEditor.externalLink"
         :toolbars="mavonEditor.toolbars"
+        v-cloak
       ></mavon-editor>
       <mavon-editor
         language="ja"
@@ -166,3 +170,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  [v-cloak] {
+    display: none;
+  }
+</style>
