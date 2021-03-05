@@ -10,7 +10,6 @@
           v-cloak
         ></v-text-field>
       </v-form>
-
       <v-textarea
         v-model="item.tags.name"
         label="タグ"
