@@ -29,6 +29,7 @@
       <v-text-field
         v-model="item.tags.versions"
         label="バージョン"
+        class="version_form"
         color="green"
         required
         type="number"
@@ -83,7 +84,7 @@ export default {
         title: '',
         tags: {
           name: '',
-          versions: ['']
+          versions: '1'
         }
       },
       mavonEditor: {
@@ -172,6 +173,10 @@ export default {
 </script>
 
 <style lang="scss">
+.tag-input {
+  margin-top: 20px;
+}
+
 .tag-input span.chip {
   background-color: #1976d2;
   color: #fff;
@@ -199,6 +204,10 @@ export default {
     word-wrap: normal;
     direction: ltr;
     -webkit-font-smoothing: antialiased;
+}
+
+.version_form {
+  visibility:hidden;
 }
 
 </style>
