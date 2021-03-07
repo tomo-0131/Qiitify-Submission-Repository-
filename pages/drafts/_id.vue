@@ -32,6 +32,7 @@
         required
         type="number"
         placeholder="例：1.0.0"
+        class="version_form"
         v-cloak
       ></v-text-field><br>
       <mavon-editor
@@ -137,6 +138,7 @@ export default {
     }
   },
   methods: {
+    // タグフォーム
     updateTags () {
       this.$nextTick(() => {
         this.item.tags.name.push(...this.search.split(','))
@@ -145,8 +147,10 @@ export default {
         })
       })
     },
+    // 編集投稿押下時
     patchItems () {
       const url = `https://qiita.com/api/v2/items/${this.item.id}`
+      const random = 'Math.floor(Math.random() * 9)'
       const params = {
         body: this.item.body,
         coediting: false,
@@ -155,7 +159,7 @@ export default {
         tags: [
           {
             name: this.item.tags.name,
-            versions: [this.item.tags.versions]
+            versions: [random]
           }
         ],
         title: this.item.title,
@@ -171,10 +175,11 @@ export default {
           this.message = 'エラー' + error
         })
     },
+    //
     getAPIs () {
       axios.get(`https://qiita.com/api/v2/items/${this.$route.params.id}`, { headers: { Authorization: `Bearer ${process.env.QIITA_TOKEN}` } })
         .then((response) => {
-          console.log(response)
+          // console.log(response)
           this.item = response.data
           this.item.tags.name = response.data.tags[0].name
           this.item.tags.versions = response.data.tags[0].versions
@@ -194,4 +199,9 @@ export default {
   [v-cloak] {
     display: none;
   }
+
+  .version_form {
+    visibility:hidden;
+  }
+
 </style>
