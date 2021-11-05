@@ -2,52 +2,59 @@
   <div id="app">
     <v-app>
       <v-container>
-       <v-img
+        <v-img
           data-aos="zoom-in-up"
           data-aos-anchor-placement="top-bottom"
           class="img1"
-          v-bind:src="require('@/assets/images/top.png')"
+          :src="require('@/assets/images/top.png')"
           height="250px"
-        ><br>
-        <v-card class="top-img-card" max-width="670px" data-aos="zoom-in-up">
-          <p class="task1">ユーザIDを入力してQiitaを検索！</p>
-          <v-card-text>
-            <v-form>
-              <v-text-field
-                v-model="userId"
-                label="ユーザIDを入力してください"
-                loading
-                color="green"
-                required
-                hide-details="auto"
-              ></v-text-field>
-            </v-form>
-          </v-card-text>
-        </v-card>
-      </v-img>
+        >
+          <br>
+          <v-card class="top-img-card" max-width="670px" data-aos="zoom-in-up">
+            <p class="task1">
+              ユーザIDを入力してQiitaを検索！
+            </p>
+            <v-card-text>
+              <v-form>
+                <v-text-field
+                  v-model="userId"
+                  label="ユーザIDを入力してください"
+                  loading
+                  color="green"
+                  required
+                  hide-details="auto"
+                />
+              </v-form>
+            </v-card-text>
+          </v-card>
+        </v-img>
 
         <nuxt-link to="/task2">
-          <div class="text-center"  data-aos="zoom-in-up">
+          <div class="text-center" data-aos="zoom-in-up">
             <v-btn
               color="green"
               elevation="4"
               dark
-              > 私の投稿
+            >
+              私の投稿
             </v-btn>
           </div>
         </nuxt-link>
-      <br>
-      <p class="text-center" v-cloak>{{ message }}</p>
-        <v-card elevation="1" width="1200px"><br>
-          <ul  class="top-list">
-            <li v-for="item in items" :key="item.id" data-aos='fade-up' dulation='1500' v-cloak>
+        <br>
+        <p v-cloak class="text-center">
+          {{ message }}
+        </p>
+        <v-card elevation="1" width="1200px">
+          <br>
+          <ul class="top-list">
+            <li v-for="item in items" v-cloak :key="item.id" data-aos="fade-up" dulation="1500">
               <nuxt-link :to="`items/${item.id}`">
                 <h4>{{ item.title }}</h4>
               </nuxt-link>
               <nuxt-link :to="`users/${item.user.id}`">
                 ユーザID：{{ item.user.id }}
               </nuxt-link>
-            <v-divider /><br>
+              <v-divider /><br>
             </li>
           </ul>
           <br>
